@@ -1,0 +1,16 @@
+autoload -Uz promptinit
+promptinit
+prompt walters
+
+export EDITOR=vim
+
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
+fpath=(~/.zsh/functions $fpath)
+
+autoload -U ~/.zsh/functions/*(:t)
+
+setopt COMPLETE_IN_WORD
