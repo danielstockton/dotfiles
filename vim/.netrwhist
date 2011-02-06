@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/daniel/.local/share/Trash/files/scrooloose-nerdtree-7650cdc.2'
-let g:netrw_dirhist_2='/home/daniel/dotfiles/bash/completion'
-let g:netrw_dirhist_3='/home/daniel/.bash'
-let g:netrw_dirhist_4='/home/daniel/code/rails/snorby/app'

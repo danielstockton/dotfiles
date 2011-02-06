@@ -1,4 +1,5 @@
 function c { cd ~/code/$1; }
+function h { cd ~/$1; }
 
 alias reload='. ~/.bashrc'
 alias ..='cd ..'
