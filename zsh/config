@@ -1,8 +1,11 @@
 autoload -Uz promptinit
 promptinit
-prompt walters
+
+PS1='%~%% '
 
 export EDITOR=vim
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
