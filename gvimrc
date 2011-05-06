@@ -1,1 +1,2 @@
-colorscheme railscasts
+set background=light
+colorscheme solarized

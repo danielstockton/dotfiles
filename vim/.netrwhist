@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/daniel/code/rails/mortivica/app/views/layouts'
-let g:netrw_dirhist_2='/home/daniel/code/rails/gems/youtube-field/lib/youtube-field'
-let g:netrw_dirhist_3='/home/daniel/code/rails/mortivica/public/stylesheets'
-let g:netrw_dirhist_4='/home/daniel/code/rails/locato/config/initializers'
-let g:netrw_dirhist_5='/home/daniel/code/rails/locato/db/migrate'
-let g:netrw_dirhist_6='/home/daniel/dotfiles/zsh/functions'
