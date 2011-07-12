@@ -2,4 +2,4 @@
 .svn
 *~
 .*.swp
-/vim/view/*
+/vim/view
