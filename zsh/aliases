@@ -1,0 +1,29 @@
+function c { cd ~/code/$1; }
+function h { cd ~/$1; }
+
+alias ..='cd ..'
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+#git
+alias gl='git pull'
+alias gp='git push'
+alias gc='git commit -am'
+alias gs='git status'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gd='git diff'
+alias gm='git merge'
+
+#clojure
+alias clj='clj-env-dir'
+
+#rails
+alias migrate='rake db:migrate db:test:clone'
