@@ -1,6 +1,6 @@
 set nocompatible               " NEVER change this! Use Vim mode, not vi mode.
-filetype plugin indent on      " Enable automatic settings based on file type
 syntax on                      " Enable colour syntax highlighting
+filetype plugin indent on      " Enable automatic settings based on file type
 
 " Buffer (File) Options:
 set hidden                     " Edit multiple unsaved files at the same time
@@ -45,11 +45,16 @@ set shiftwidth=2
 set softtabstop=2              " Number of spaces for each indent level
 set expandtab                  " Even when pressing <Tab>
 
-set background=dark
-colorscheme solarized
+" Save and load folds automatically
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
 
-" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
-filetype plugin on
+if has('gui_running')
+    set background=light
+else
+    set background=dark
+endif
+colorscheme solarized
 
 " IMPORTANT: win32 users will need to have 'shellslash' set so that latex
 " can be called correctly.
@@ -60,10 +65,11 @@ set shellslash
 " program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
 
-" OPTIONAL: This enables automatic indentation as you type.
-filetype indent on
-
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
+let vimclojure#HighlightBuiltins = 1
+let vimclojure#ParenRainbow  = 1
+let vimclojure#WantNailgun   = 1
+let vimclojure#NailgunClient ="ng"
