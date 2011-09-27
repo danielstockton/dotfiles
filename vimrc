@@ -1,12 +1,19 @@
 set nocompatible               " NEVER change this! Use Vim mode, not vi mode.
 syntax on                      " Enable colour syntax highlighting
-filetype plugin indent on      " Enable automatic settings based on file type
+
+filetype off
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+Bundle "gmarik/vundle"
 Bundle "VimClojure"
 Bundle "vim-scripts/slimv.vim.git"
+Bundle "rails.vim"
+Bundle "git://git.wincent.com/command-t.git"
+
+filetype plugin indent on      " Enable automatic settings based on file type
+
 
 " Buffer (File) Options:
 set hidden                     " Edit multiple unsaved files at the same time
@@ -76,6 +83,6 @@ set grepprg=grep\ -nH\ $*
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
 let vimclojure#HighlightBuiltins = 1
-let vimclojure#ParenRainbow  = 10
-let vimclojure#WantNailgun   = 1
-let vimclojure#NailgunClient ="ng"
+let vimclojure#ParenRainbow  = 1
+let vimclojure#WantNailgun   = 0
+let vimclojure#NailgunClient ="/home/daniel/.ng/ng"
