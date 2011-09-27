@@ -11,6 +11,7 @@ Bundle "VimClojure"
 Bundle "vim-scripts/slimv.vim.git"
 Bundle "rails.vim"
 Bundle "git://git.wincent.com/command-t.git"
+Bundle "scrooloose/nerdtree"
 
 filetype plugin indent on      " Enable automatic settings based on file type
 
