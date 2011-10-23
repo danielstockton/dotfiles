@@ -13,6 +13,7 @@ Bundle "rails.vim"
 Bundle "git://git.wincent.com/command-t.git"
 Bundle "scrooloose/nerdtree"
 Bundle "git://github.com/mineiro/vim-latex.git"
+Bundle "git://github.com/tpope/vim-surround.git"
 
 filetype plugin indent on      " Enable automatic settings based on file type
 
@@ -62,7 +63,7 @@ set expandtab                  " Even when pressing <Tab>
 
 " Save and load folds automatically
 au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+au BufWinEnter *.* silent loadview
 
 if has('gui_running')
     set background=light
@@ -84,7 +85,10 @@ set grepprg=grep\ -nH\ $*
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
-let vimclojure#HighlightBuiltins = 1
-let vimclojure#ParenRainbow  = 1
-let vimclojure#WantNailgun   = 0
-let vimclojure#NailgunClient ="/home/daniel/.ng/ng"
+
+let vimclojure#HighlightBuiltins=1
+let vimclojure#HighlightContrib=1
+let vimclojure#DynamicHighlighting=1
+let vimclojure#ParenRainbow=1
+let vimclojure#WantNailgun = 1
+let vimclojure#NailgunClient = "/home/daniel/.vim/bundle/VimClojure/lib/ng"

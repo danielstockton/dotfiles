@@ -22,8 +22,5 @@ alias gba='git branch -a'
 alias gd='git diff'
 alias gm='git merge'
 
-#clojure
-alias clj='clj-env-dir'
-
 #rails
 alias migrate='rake db:migrate db:test:clone'
