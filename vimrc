@@ -17,7 +17,6 @@ Bundle "git://github.com/tpope/vim-surround.git"
 
 filetype plugin indent on      " Enable automatic settings based on file type
 
-
 " Buffer (File) Options:
 set hidden                     " Edit multiple unsaved files at the same time
 set confirm                    " Prompt to save unsaved changes when exiting
