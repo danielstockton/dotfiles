@@ -9,11 +9,12 @@ call vundle#rc()
 Bundle "gmarik/vundle"
 Bundle "VimClojure"
 Bundle "vim-scripts/slimv.vim.git"
-Bundle "rails.vim"
+Bundle "git://github.com/tpope/vim-rails.git"
 Bundle "git://git.wincent.com/command-t.git"
 Bundle "scrooloose/nerdtree"
 Bundle "git://github.com/mineiro/vim-latex.git"
 Bundle "git://github.com/tpope/vim-surround.git"
+Bundle "git://github.com/wlangstroth/vim-racket.git"
 
 filetype plugin indent on      " Enable automatic settings based on file type
 
