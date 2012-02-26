@@ -1,4 +1,8 @@
 autoload -Uz vcs_info
+
+# Load functions
+fpath=(~/.zsh/functions $fpath)
+autoload -U ~/.zsh/functions/*(:t)
  
 zstyle ':vcs_info:*' stagedstr '%F{28}+'
 zstyle ':vcs_info:*' unstagedstr '%F{11}+'
@@ -23,9 +27,13 @@ else
   export PS1='%3~${vcs_info_msg_0_}%# '
 fi
 
-export PATH=${PATH}:$HOME/bitcoin/bin/32:$HOME/local/node/bin:$HOME/.lein/
+export PATH=${PATH}:$HOME/local/node/bin:$HOME/.lein/
 export EDITOR=vim
-export JAVA_HOME=/usr/lib/jvm/java-6-sun
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
+
+# virtualenv + venvwrapper
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
 
 export TERM='xterm-256color'
 
@@ -36,8 +44,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-fpath=(~/.zsh/functions $fpath)
-
-autoload -U ~/.zsh/functions/*(:t)
-
 setopt COMPLETE_IN_WORD
+
+# Hook for rvmrv and venvrc
+chpwd_functions=( chpwd_venv chpwd )

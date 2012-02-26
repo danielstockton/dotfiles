@@ -6,15 +6,15 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle "gmarik/vundle"
-Bundle "VimClojure"
-Bundle "vim-scripts/slimv.vim.git"
+Bundle "git://github.com/gmarik/vundle.git"
+Bundle "git://github.com/vim-scripts/VimClojure.git"
 Bundle "git://github.com/tpope/vim-rails.git"
-Bundle "git://git.wincent.com/command-t.git"
-Bundle "scrooloose/nerdtree"
+Bundle "git://github.com/wincent/Command-T.git"
+Bundle "git://github.com/scrooloose/nerdtree.git"
 Bundle "git://github.com/mineiro/vim-latex.git"
 Bundle "git://github.com/tpope/vim-surround.git"
 Bundle "git://github.com/wlangstroth/vim-racket.git"
+Bundle "git://github.com/sukima/xmledit.git"
 
 filetype plugin indent on      " Enable automatic settings based on file type
 
@@ -62,7 +62,7 @@ set softtabstop=2              " Number of spaces for each indent level
 set expandtab                  " Even when pressing <Tab>
 
 " Save and load folds automatically
-au BufWinLeave * mkview
+" au BufWinLeave * mkview
 au BufWinEnter *.* silent loadview
 
 if has('gui_running')
@@ -91,4 +91,4 @@ let vimclojure#HighlightContrib=1
 let vimclojure#DynamicHighlighting=1
 let vimclojure#ParenRainbow=1
 let vimclojure#WantNailgun = 1
-let vimclojure#NailgunClient = "/home/daniel/.vim/bundle/VimClojure/lib/ng"
+let vimclojure#NailgunClient = "/home/daniel/.vim/bundle/VimClojure/lib/ng/ng"

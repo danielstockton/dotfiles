@@ -1,0 +1,12 @@
+chpwd_venv() {
+  dir=$PWD
+  cfg="${dir}/.venvrc"
+  if [ -f ${cfg} ]; then
+    current_env=$(showvirtualenv)
+    want_env=$(cat ${cfg})
+    if [ "${want_env}" != "${current_env}" ]; then
+      echo "Changing to python environment: ${want_env}"
+      workon ${want_env}
+    fi
+  fi
+}
