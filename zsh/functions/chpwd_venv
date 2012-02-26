@@ -1,6 +1,5 @@
 chpwd_venv() {
-  dir=$PWD
-  cfg="${dir}/.venvrc"
+  cfg="${PWD}/.venvrc"
   if [ -f ${cfg} ]; then
     current_env=$(showvirtualenv)
     want_env=$(cat ${cfg})
