@@ -47,4 +47,4 @@ HISTFILE=~/.zsh_history
 setopt COMPLETE_IN_WORD
 
 # Hook for rvmrv and venvrc
-chpwd_functions=( chpwd_venv chpwd )
+chpwd_functions=( "${chpwd_functions[@]}" chpwd_venv chpwd )
