@@ -15,6 +15,9 @@ Bundle "git://github.com/mineiro/vim-latex.git"
 Bundle "git://github.com/tpope/vim-surround.git"
 Bundle "git://github.com/wlangstroth/vim-racket.git"
 Bundle "git://github.com/sukima/xmledit.git"
+Bundle "git://github.com/kchmck/vim-coffee-script.git" 
+Bundle "git://github.com/jpalardy/vim-slime.git"
+Bundle "git://github.com/groenewege/vim-less.git"
 
 filetype plugin indent on      " Enable automatic settings based on file type
 
@@ -90,5 +93,5 @@ let vimclojure#HighlightBuiltins=1
 let vimclojure#HighlightContrib=1
 let vimclojure#DynamicHighlighting=1
 let vimclojure#ParenRainbow=1
-let vimclojure#WantNailgun = 1
-let vimclojure#NailgunClient = "/home/daniel/.vim/bundle/VimClojure/lib/ng/ng"
+let vimclojure#WantNailgun=0
+let vimclojure#NailgunClient="/home/daniel/.vim/bundle/VimClojure/lib/client/ng"
