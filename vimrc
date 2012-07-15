@@ -27,6 +27,9 @@ set confirm                    " Prompt to save unsaved changes when exiting
 " Keep various histories between edits
 set viminfo='1000,f1,<500,:100,/100
 
+" Autocomplete:
+imap <Tab> <C-P>               " Tab autocompletion
+
 " Search Options:
 set hlsearch                   " Highlight searches. See below for more.
 set ignorecase                 " Do case insensitive matching...
@@ -50,7 +53,11 @@ set cmdheight=2                " Prevent "Press Enter" message after most comman
 set statusline=%f%m%r%h%w\ [%n:%{&ff}/%Y]%=[0x\%04.4B][%03v][%p%%\ line\ %l\ of\ %L]
 
 " Interface Options:
-set number                     " Display line numbers at left of screen
+" Relative line numbers except in insert mode
+set rnu
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set rnu
+
 set visualbell                 " Flash the screen instead of beeping on errors
 set t_vb=                      " And then disable even the flashing
 set mouse=a                    " Enable mouse usage (all modes) in terminals
