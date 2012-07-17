@@ -1,0 +1,8 @@
+todo() {
+  if [ -n "$1" ]
+  then
+    grep -RIn "TODO:${1}\|FIXME:${1}\|OPTIMIZE:${1}" * --color=auto
+  else
+    grep -RIn "TODO\|FIXME\|OPTIMIZE" * --color=auto
+  fi
+}
