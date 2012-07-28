@@ -64,17 +64,17 @@ set mouse=a                    " Enable mouse usage (all modes) in terminals
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
 
-" Indentation Options:
-set tabstop=8                  " NEVER change this!
-" Change the '2' value below to your preferred indentation level
+" INDENTATION 
+set tabstop=8
 set shiftwidth=2
-set softtabstop=2              " Number of spaces for each indent level
-set expandtab                  " Even when pressing <Tab>
+set softtabstop=2
+set expandtab
 
 " Save and load folds automatically
 " au BufWinLeave * mkview
 au BufWinEnter *.* silent loadview
 
+" COLORS
 if has('gui_running')
     set background=light
 else
