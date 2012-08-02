@@ -18,6 +18,7 @@ Bundle "git://github.com/sukima/xmledit.git"
 Bundle "git://github.com/kchmck/vim-coffee-script.git" 
 Bundle "git://github.com/jpalardy/vim-slime.git"
 Bundle "git://github.com/groenewege/vim-less.git"
+Bundle "git://github.com/ervandew/supertab.git"
 
 filetype plugin indent on      " Enable automatic settings based on file type
 
@@ -27,8 +28,9 @@ set confirm                    " Prompt to save unsaved changes when exiting
 " Keep various histories between edits
 set viminfo='1000,f1,<500,:100,/100
 
-" Autocomplete:
-imap <Tab> <C-P>               " Tab autocompletion
+" TAB COMPLETION
+let g:SuperTabDefaultCompletionType = "context""
+let g:SuperTabClosePreviewOnPopupClose = 1 
 
 " Search Options:
 set hlsearch                   " Highlight searches. See below for more.
