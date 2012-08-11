@@ -87,3 +87,14 @@ let vimclojure#DynamicHighlighting=1
 let vimclojure#ParenRainbow=1
 let vimclojure#WantNailgun=0
 let vimclojure#NailgunClient="/home/daniel/.vim/bundle/VimClojure/lib/client/ng"
+
+" EXPERIMENTAL
+" Disable arrow keys
+noremap  <Up> ""
+noremap! <Up> <Esc>
+noremap  <Down> ""
+noremap! <Down> <Esc>
+noremap  <Left> ""
+noremap! <Left> <Esc>
+noremap  <Right> ""
+noremap! <Right> <Esc>
