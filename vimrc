@@ -18,6 +18,7 @@ Bundle "wlangstroth/vim-racket"
 Bundle "tpope/vim-rails"
 Bundle "kchmck/vim-coffee-script" 
 Bundle "groenewege/vim-less"
+Bundle "scrooloose/syntastic"
 
 " Utility
 Bundle "ervandew/supertab"
