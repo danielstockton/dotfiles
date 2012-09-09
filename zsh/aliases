@@ -12,15 +12,16 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-#git
+# GIT
 alias gl='git pull'
 alias gp='git push'
 alias gc='git commit -am'
-alias gs='git status'
+alias gs='git status --short'
 alias gb='git branch'
 alias gba='git branch -a'
 alias gd='git diff'
 alias gm='git merge'
+alias gg='git log --graph --oneline --color'
 
-#rails
+# RAILS
 alias migrate='rake db:migrate db:test:clone'
