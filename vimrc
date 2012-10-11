@@ -19,9 +19,11 @@ Bundle "tpope/vim-rails"
 Bundle "kchmck/vim-coffee-script" 
 Bundle "groenewege/vim-less"
 Bundle "scrooloose/syntastic"
+Bundle "vim-scripts/taglist.vim"
 
 " Utility
 Bundle "ervandew/supertab"
+Bundle "tpope/vim-surround"
 
 filetype plugin indent on      " Enable automatic settings based on file type
 
