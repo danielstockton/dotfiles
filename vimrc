@@ -19,7 +19,7 @@ Bundle "tpope/vim-rails"
 Bundle "kchmck/vim-coffee-script" 
 Bundle "groenewege/vim-less"
 Bundle "scrooloose/syntastic"
-Bundle "vim-scripts/taglist.vim"
+Bundle "majutsushi/tagbar"
 
 " Utility
 Bundle "ervandew/supertab"
