@@ -8,22 +8,19 @@ call vundle#rc()
 
 Bundle "gmarik/vundle"
 
-" Navigation
-Bundle "wincent/Command-T"
-Bundle "scrooloose/nerdtree"
-
-" Programming
-Bundle "vim-scripts/VimClojure"
-Bundle "wlangstroth/vim-racket"
-Bundle "tpope/vim-rails"
-Bundle "kchmck/vim-coffee-script" 
-Bundle "groenewege/vim-less"
-Bundle "scrooloose/syntastic"
-Bundle "majutsushi/tagbar"
-
-" Utility
 Bundle "ervandew/supertab"
+Bundle "groenewege/vim-less"
+Bundle "kchmck/vim-coffee-script" 
+Bundle "majutsushi/tagbar"
+Bundle "scrooloose/nerdcommenter"
+Bundle "scrooloose/nerdtree"
+Bundle "scrooloose/syntastic"
+Bundle "tpope/vim-rails"
 Bundle "tpope/vim-surround"
+Bundle "vim-scripts/slimv.vim"
+Bundle "vim-scripts/VimClojure"
+Bundle "wincent/Command-T"
+Bundle "wlangstroth/vim-racket"
 
 filetype plugin indent on      " Enable automatic settings based on file type
 

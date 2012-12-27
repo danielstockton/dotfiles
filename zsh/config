@@ -27,9 +27,9 @@ else
   export PS1='%3~${vcs_info_msg_0_}%# '
 fi
 
-export PATH=${PATH}:$HOME/local/node/bin:$HOME/.lein/:$HOME/.julia
+export PATH=${PATH}:$HOME/local/node/bin:$HOME/.lein/:$HOME/.julia:/usr/local/heroku/bin
 export EDITOR=vim
-export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk/jre
 
 # virtualenv + venvwrapper
 export WORKON_HOME=~/.virtualenvs
