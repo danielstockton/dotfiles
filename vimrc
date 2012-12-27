@@ -67,7 +67,7 @@ set mouse=a                    " Enable mouse usage (all modes) in terminals
 set notimeout ttimeout ttimeoutlen=200
 
 " INDENTATION 
-set tabstop=8
+set tabstop=4
 set shiftwidth=2
 set softtabstop=2
 set expandtab
