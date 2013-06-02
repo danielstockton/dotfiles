@@ -9,7 +9,9 @@
 
 (defvar my-packages '(clojure-mode 
                       clojure-test-mode 
-                      nrepl))
+                      nrepl
+		      paredit
+		      rainbow-delimiters))
 
 (dolist (p my-packages) (when (not (package-installed-p p)) (package-install p)))
 
@@ -20,12 +22,18 @@
 
 (menu-bar-mode 0)
 
+(defun turn-on-paredit () (paredit-mode 1))
+(add-hook 'clojure-mode-hook 'turn-on-paredit)
+(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'nrepl-mode-hook 'paredit-mode)
+(add-hook 'nrepl-mode-hook 'rainbow-delimiters-mode)
+
+;; ORD-MODE
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 
-;; ORG-MODE
 (add-hook 'org-mode-hook
 	 (lambda ()
 	   ;; Undefine C-c [ and C-c ] since this breaks my
