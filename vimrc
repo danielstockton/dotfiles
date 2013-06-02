@@ -20,7 +20,7 @@ Bundle "tpope/vim-surround"
 Bundle "vim-scripts/slimv.vim"
 Bundle "vim-scripts/VimClojure"
 Bundle "wincent/Command-T"
-Bundle "wlangstroth/vim-racket"
+Bundle "editorconfig/editorconfig-vim"
 
 filetype plugin indent on      " Enable automatic settings based on file type
 

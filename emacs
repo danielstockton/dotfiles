@@ -7,13 +7,13 @@
 	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
 
-(defvar my-packages '(clojure-mode color-theme-zenburn))
+(defvar my-packages '(clojure-mode 
+                      clojure-test-mode 
+                      nrepl)
 
 (dolist (p my-packages) (when (not (package-installed-p p)) (package-install p)))
 
 (require 'color-theme-solarized)
-(require 'color-theme-zenburn)
-(color-theme-zenburn)
 
 (require 'linum)
 (global-linum-mode)
@@ -25,6 +25,7 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 
+;; ORG-MODE
 (add-hook 'org-mode-hook
 	 (lambda ()
 	   ;; Undefine C-c [ and C-c ] since this breaks my
