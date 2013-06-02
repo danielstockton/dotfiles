@@ -17,8 +17,14 @@ Bundle "scrooloose/nerdtree"
 Bundle "scrooloose/syntastic"
 Bundle "tpope/vim-rails"
 Bundle "tpope/vim-surround"
-Bundle "vim-scripts/slimv.vim"
-Bundle "vim-scripts/VimClojure"
+
+" CLOJURE
+Bundle "tpope/vim-fireplace"
+Bundle "guns/vim-clojure-static"
+Bundle "tpope/vim-classpath"
+Bundle "kien/rainbow_parentheses.vim"
+Bundle "vim-scripts/paredit.vim"
+
 Bundle "wincent/Command-T"
 Bundle "editorconfig/editorconfig-vim"
 
@@ -80,13 +86,10 @@ else
 endif
 colorscheme solarized
 
-" CLOJURE
-let vimclojure#HighlightBuiltins=1
-let vimclojure#HighlightContrib=1
-let vimclojure#DynamicHighlighting=1
-let vimclojure#ParenRainbow=1
-let vimclojure#WantNailgun=0
-let vimclojure#NailgunClient="/home/daniel/.vim/bundle/VimClojure/lib/client/ng"
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " EXPERIMENTAL
 " Disable arrow keys
