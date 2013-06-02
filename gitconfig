@@ -1,3 +1,5 @@
 [user]
 	name = Daniel Stockton
 	email = me@danielstockton.com
+[color]
+  ui = true
