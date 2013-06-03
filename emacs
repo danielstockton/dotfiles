@@ -28,7 +28,7 @@
 (add-hook 'nrepl-mode-hook 'paredit-mode)
 (add-hook 'nrepl-mode-hook 'rainbow-delimiters-mode)
 
-;; ORD-MODE
+;; ORG-MODE
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
