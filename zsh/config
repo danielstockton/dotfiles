@@ -3,7 +3,7 @@ autoload -Uz vcs_info
 # Load functions
 fpath=(~/.zsh/functions $fpath)
 autoload -U ~/.zsh/functions/*(:t)
- 
+
 zstyle ':vcs_info:*' stagedstr '%F{28}+'
 zstyle ':vcs_info:*' unstagedstr '%F{11}+'
 zstyle ':vcs_info:*' check-for-changes true
@@ -11,14 +11,14 @@ zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{11}%r'
 zstyle ':vcs_info:*' enable git svn
 precmd () {
     if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
-        zstyle ':vcs_info:*' formats '[%b%c%u%F{white}]'
+        zstyle ':vcs_info:*' formats '[%b%c%u%F{reset}]'
     } else {
-        zstyle ':vcs_info:*' formats '[%b%c%u%F{red}+%F{white}]'
+        zstyle ':vcs_info:*' formats '[%b%c%u%F{red}+%F{reset}]'
     }
- 
+
     vcs_info
 }
- 
+
 setopt prompt_subst
 
 if [[ -n $SSH_CONNECTION ]]; then
@@ -31,7 +31,7 @@ export PATH=${PATH}:$HOME/bin/:$HOME/.lein:/usr/local/heroku/bin:$HOME/.rbenv/bi
 export EDITOR=vim
 export JAVA_HOME=/usr/lib/jvm/java-7-openjdk/jre
 
-export TERM='screen-256color'
+eval `dircolors ~/.dir_colors`
 
 eval "$(rbenv init -)"
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator && source $HOME/.tmuxinator/scripts/tmuxinator_completion
