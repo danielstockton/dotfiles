@@ -80,7 +80,7 @@ set expandtab
 
 " WHITESPACE
 nmap <leader>l :set list!<CR>
-set listchars=tab:â¸\ ,eol:Â¬
+set listchars=tab:▸\ ,eol:¬
 autocmd BufWritePre * :%s/\s\+$//e
 
 " TAGS
