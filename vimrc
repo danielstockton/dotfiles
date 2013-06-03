@@ -78,6 +78,14 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
+" WHITESPACE
+nmap <leader>l :set list!<CR>
+set listchars=tab:â¸\ ,eol:Â¬
+autocmd BufWritePre * :%s/\s\+$//e
+
+" TAGS
+nmap <leader>a :TagbarToggle<CR>
+
 " COLORS
 if has('gui_running')
     set background=light
