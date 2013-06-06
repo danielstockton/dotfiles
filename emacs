@@ -1,21 +1,21 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/plugins/")
-(add-to-list 'load-path "~/.emacs.d/plugins/themes/emacs-color-theme-solarized/")
 
 (require 'package)
 (add-to-list 'package-archives
 	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
 
-(defvar my-packages '(clojure-mode 
-                      clojure-test-mode 
+(defvar my-packages '(color-theme-solarized
+                      clojure-mode
+                      clojure-test-mode
                       nrepl
-		      paredit
-		      rainbow-delimiters))
+                      paredit
+                      rainbow-delimiters))
 
 (dolist (p my-packages) (when (not (package-installed-p p)) (package-install p)))
 
-(require 'color-theme-solarized)
+(load-theme 'solarized-dark t)
 
 (require 'linum)
 (global-linum-mode)
