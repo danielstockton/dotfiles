@@ -33,6 +33,8 @@ export JAVA_HOME=/usr/lib/jvm/java-7-openjdk/jre
 
 eval `dircolors ~/.dir_colors`
 
+export TERM=xterm-16color
+
 eval "$(rbenv init -)"
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator && source $HOME/.tmuxinator/scripts/tmuxinator_completion
 
