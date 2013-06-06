@@ -17,6 +17,9 @@ Bundle "scrooloose/nerdtree"
 Bundle "scrooloose/syntastic"
 Bundle "tpope/vim-rails"
 Bundle "tpope/vim-surround"
+Bundle "wincent/Command-T"
+Bundle "editorconfig/editorconfig-vim"
+Bundle "altercation/vim-colors-solarized"
 
 " CLOJURE
 Bundle "tpope/vim-fireplace"
@@ -25,8 +28,6 @@ Bundle "tpope/vim-classpath"
 Bundle "amdt/vim-niji"
 Bundle "vim-scripts/paredit.vim"
 
-Bundle "wincent/Command-T"
-Bundle "editorconfig/editorconfig-vim"
 
 filetype plugin indent on      " Enable automatic settings based on file type
 
@@ -92,7 +93,7 @@ if has('gui_running')
 else
     set background=dark
 endif
-color solarized
+colorscheme solarized
 set t_Co=16
 
 " EXPERIMENTAL
