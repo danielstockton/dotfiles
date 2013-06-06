@@ -22,7 +22,7 @@ Bundle "tpope/vim-surround"
 Bundle "tpope/vim-fireplace"
 Bundle "guns/vim-clojure-static"
 Bundle "tpope/vim-classpath"
-Bundle "kien/rainbow_parentheses.vim"
+Bundle "amdt/vim-niji"
 Bundle "vim-scripts/paredit.vim"
 
 Bundle "wincent/Command-T"
@@ -93,11 +93,6 @@ else
     set background=dark
 endif
 colorscheme solarized
-
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
 
 " EXPERIMENTAL
 " Disable arrow keys
