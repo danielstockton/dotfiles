@@ -10,7 +10,7 @@ Bundle "gmarik/vundle"
 
 Bundle "ervandew/supertab"
 Bundle "groenewege/vim-less"
-Bundle "kchmck/vim-coffee-script" 
+Bundle "kchmck/vim-coffee-script"
 Bundle "majutsushi/tagbar"
 Bundle "scrooloose/nerdcommenter"
 Bundle "scrooloose/nerdtree"
@@ -38,7 +38,7 @@ set viminfo='1000,f1,<500,:100,/100
 
 " TAB COMPLETION
 let g:SuperTabDefaultCompletionType = "context""
-let g:SuperTabClosePreviewOnPopupClose = 1 
+let g:SuperTabClosePreviewOnPopupClose = 1
 
 " SEARCH
 set hlsearch                   " Highlight searches. See below for more.
@@ -72,7 +72,7 @@ set t_vb=                      " And then disable even the flashing
 set mouse=a                    " Enable mouse usage (all modes) in terminals
 set notimeout ttimeout ttimeoutlen=200
 
-" INDENTATION 
+" INDENTATION
 set tabstop=4
 set shiftwidth=2
 set softtabstop=2
@@ -92,7 +92,8 @@ if has('gui_running')
 else
     set background=dark
 endif
-colorscheme solarized
+color solarized
+set t_Co=16
 
 " EXPERIMENTAL
 " Disable arrow keys
