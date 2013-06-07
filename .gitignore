@@ -6,3 +6,6 @@ vim/.netrwhist
 vim/view/*
 vim/bundle/*
 !vim/bundle/vundle
+emacs.d/elpa
+emacs.d/swank
+emacs.d/auto-save-list
