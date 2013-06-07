@@ -1,5 +1,4 @@
 (add-to-list 'load-path "~/.emacs.d/")
-(add-to-list 'load-path "~/.emacs.d/plugins/")
 
 (require 'package)
 (add-to-list 'package-archives
