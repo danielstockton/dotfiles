@@ -17,7 +17,7 @@ Bundle "scrooloose/nerdtree"
 Bundle "scrooloose/syntastic"
 Bundle "tpope/vim-rails"
 Bundle "tpope/vim-surround"
-Bundle "wincent/Command-T"
+Bundle "kien/ctrlp.vim"
 Bundle "editorconfig/editorconfig-vim"
 Bundle "altercation/vim-colors-solarized"
 
