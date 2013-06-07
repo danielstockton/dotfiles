@@ -20,6 +20,7 @@ Bundle "tpope/vim-surround"
 Bundle "kien/ctrlp.vim"
 Bundle "editorconfig/editorconfig-vim"
 Bundle "altercation/vim-colors-solarized"
+Bundle "Lokaltog/vim-easymotion"
 
 " CLOJURE
 Bundle "tpope/vim-fireplace"
