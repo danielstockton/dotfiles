@@ -1,12 +1,16 @@
 .DS_Store
 .svn
+
 *~
 *.sw?
 vim/.netrwhist
 vim/view/*
 vim/bundle/*
 !vim/bundle/vundle
+
 #*#
+
 emacs.d/elpa
+emacs.d/tramp
 emacs.d/swank
 emacs.d/auto-save-list

@@ -11,11 +11,14 @@
                       clojure-test-mode
                       nrepl
                       paredit
-                      rainbow-delimiters))
+                      rainbow-delimiters
+                      editorconfig))
 
 (dolist (p my-packages) (when (not (package-installed-p p)) (package-install p)))
 
 (load-theme 'solarized-dark t)
+
+(load "editorconfig")
 
 (require 'linum)
 (global-linum-mode)
@@ -28,7 +31,7 @@
 (add-hook 'nrepl-mode-hook 'paredit-mode)
 (add-hook 'nrepl-mode-hook 'rainbow-delimiters-mode)
 
-;; ORG-MODE
+;; Org mode
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
