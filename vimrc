@@ -8,25 +8,26 @@ call vundle#rc()
 
 Bundle "gmarik/vundle"
 
+Bundle "altercation/vim-colors-solarized"
+Bundle "editorconfig/editorconfig-vim"
 Bundle "ervandew/supertab"
 Bundle "groenewege/vim-less"
 Bundle "kchmck/vim-coffee-script"
+Bundle "kien/ctrlp.vim"
+Bundle "Lokaltog/vim-easymotion"
 Bundle "majutsushi/tagbar"
 Bundle "scrooloose/nerdcommenter"
 Bundle "scrooloose/nerdtree"
 Bundle "scrooloose/syntastic"
+Bundle "tpope/vim-fugitive"
 Bundle "tpope/vim-rails"
 Bundle "tpope/vim-surround"
-Bundle "kien/ctrlp.vim"
-Bundle "editorconfig/editorconfig-vim"
-Bundle "altercation/vim-colors-solarized"
-Bundle "Lokaltog/vim-easymotion"
 
 " CLOJURE
-Bundle "tpope/vim-fireplace"
+Bundle "amdt/vim-niji"
 Bundle "guns/vim-clojure-static"
 Bundle "tpope/vim-classpath"
-Bundle "amdt/vim-niji"
+Bundle "tpope/vim-fireplace"
 Bundle "vim-scripts/paredit.vim"
 
 
