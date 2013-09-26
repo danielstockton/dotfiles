@@ -12,7 +12,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# GIT
+# Git
 alias gl='git pull'
 alias gp='git push'
 alias gc='git commit -am'
@@ -23,5 +23,8 @@ alias gd='git diff'
 alias gm='git merge'
 alias gg='git log --graph --oneline --color'
 
-# RAILS
+# Rails
 alias migrate='rake db:migrate db:test:clone'
+
+# Emacs
+alias emacs='emacs -nw'
