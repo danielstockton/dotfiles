@@ -10,7 +10,6 @@ Bundle "gmarik/vundle"
 
 Bundle "altercation/vim-colors-solarized"
 Bundle "editorconfig/editorconfig-vim"
-Bundle "ervandew/supertab"
 Bundle "groenewege/vim-less"
 Bundle "kchmck/vim-coffee-script"
 Bundle "kien/ctrlp.vim"
@@ -23,6 +22,7 @@ Bundle "scrooloose/syntastic"
 Bundle "tpope/vim-fugitive"
 Bundle "tpope/vim-rails"
 Bundle "tpope/vim-surround"
+Bundle "Valloric/YouCompleteMe"
 
 " CLOJURE
 Bundle "amdt/vim-niji"
@@ -39,10 +39,6 @@ set hidden                     " Edit multiple unsaved files at the same time
 set confirm                    " Prompt to save unsaved changes when exiting
 " Keep various histories between edits
 set viminfo='1000,f1,<500,:100,/100
-
-" TAB COMPLETION
-let g:SuperTabDefaultCompletionType = "context""
-let g:SuperTabClosePreviewOnPopupClose = 1
 
 " SEARCH
 set hlsearch                   " Highlight searches. See below for more.
