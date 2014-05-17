@@ -86,6 +86,9 @@ autocmd BufWritePre * :%s/\s\+$//e
 " TAGS
 nmap <leader>a :TagbarToggle<CR>
 
+" PAREDIT
+let g:paredit_electric_return = 0
+
 " COLORS
 if has('gui_running')
     set background=light
