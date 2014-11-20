@@ -3,3 +3,5 @@
 	email = me@danielstockton.com
 [color]
   ui = true
+[web]
+	browser = google-chrome
