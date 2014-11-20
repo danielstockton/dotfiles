@@ -3,34 +3,35 @@ syntax on                      " Enable colour syntax highlighting
 filetype off
 
 " PLUGINS
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle "gmarik/vundle"
+Plugin 'gmarik/Vundle.vim'
 
-Bundle "altercation/vim-colors-solarized"
-Bundle "editorconfig/editorconfig-vim"
-Bundle "groenewege/vim-less"
-Bundle "kchmck/vim-coffee-script"
-Bundle "kien/ctrlp.vim"
-Bundle "Lokaltog/vim-easymotion"
-Bundle "majutsushi/tagbar"
-Bundle "pangloss/vim-javascript"
-Bundle "scrooloose/nerdcommenter"
-Bundle "scrooloose/nerdtree"
-Bundle "scrooloose/syntastic"
-Bundle "tpope/vim-fugitive"
-Bundle "tpope/vim-rails"
-Bundle "tpope/vim-surround"
-Bundle "Valloric/YouCompleteMe"
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'groenewege/vim-less'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'majutsushi/tagbar'
+Plugin 'pangloss/vim-javascript'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-surround'
+Plugin 'Valloric/YouCompleteMe'
 
 " CLOJURE
-Bundle "amdt/vim-niji"
-Bundle "guns/vim-clojure-static"
-Bundle "tpope/vim-classpath"
-Bundle "tpope/vim-fireplace"
-Bundle "vim-scripts/paredit.vim"
+Plugin 'amdt/vim-niji'
+Plugin 'guns/vim-clojure-static'
+Plugin 'tpope/vim-classpath'
+Plugin 'tpope/vim-fireplace'
+Plugin 'vim-scripts/paredit.vim'
 
+call vundle#end()
 
 filetype plugin indent on      " Enable automatic settings based on file type
 
@@ -98,13 +99,9 @@ endif
 colorscheme solarized
 set t_Co=16
 
-" EXPERIMENTAL
 " Disable arrow keys
-noremap  <Up> ""
-noremap! <Up> <Esc>
-noremap  <Down> ""
-noremap! <Down> <Esc>
-noremap  <Left> ""
-noremap! <Left> <Esc>
-noremap  <Right> ""
-noremap! <Right> <Esc>
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
