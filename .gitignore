@@ -8,7 +8,7 @@ vim/view/*
 vim/bundle/*
 !vim/bundle/vundle
 
-#*#
+#*
 
 emacs.d/elpa
 emacs.d/tramp
