@@ -18,17 +18,21 @@
 
 (load "editorconfig")
 
+(require 'clojure-mode)
+
 (require 'linum)
 (global-linum-mode)
+
+(require 'evil)
+(evil-mode 1)
 
 (menu-bar-mode 0)
 
 (defun turn-on-paredit () (paredit-mode 1))
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
-
-(require 'evil)
-(evil-mode 1)
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
+(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 
 ;; Org mode
 (require 'org-install)
