@@ -1,18 +1,16 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
 (require 'package)
-(add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
 
 (defvar my-packages '(color-theme-solarized
+                      editorconfig
                       clojure-mode
-                      clojure-test-mode
-                      evil
-                      nrepl
+                      cider
                       paredit
                       rainbow-delimiters
-                      editorconfig))
+                      evil))
 
 (dolist (p my-packages) (when (not (package-installed-p p)) (package-install p)))
 
@@ -28,8 +26,6 @@
 (defun turn-on-paredit () (paredit-mode 1))
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'nrepl-mode-hook 'paredit-mode)
-(add-hook 'nrepl-mode-hook 'rainbow-delimiters-mode)
 
 (require 'evil)
 (evil-mode 1)
