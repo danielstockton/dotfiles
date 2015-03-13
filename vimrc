@@ -92,6 +92,9 @@ nmap <leader>a :TagbarToggle<CR>
 " PAREDIT
 let g:paredit_electric_return = 0
 
+" SYNTASTIC
+let g:syntastic_python_checkers = ['flake8']
+
 " COLORS
 if has('gui_running')
     set background=light
