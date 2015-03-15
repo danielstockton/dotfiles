@@ -26,11 +26,12 @@ Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
 
 " CLOJURE
+Plugin 'venantius/vim-eastwood'
 Plugin 'amdt/vim-niji'
 Plugin 'guns/vim-clojure-static'
+Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-classpath'
 Plugin 'tpope/vim-fireplace'
-Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
 call vundle#end()
