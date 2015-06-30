@@ -27,7 +27,7 @@ Plugin 'Valloric/YouCompleteMe'
 
 " CLOJURE
 Plugin 'venantius/vim-eastwood'
-Plugin 'amdt/vim-niji'
+Plugin 'losingkeys/vim-niji'
 Plugin 'guns/vim-clojure-static'
 Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-classpath'
@@ -95,7 +95,7 @@ let g:paredit_electric_return = 0
 
 " SYNTASTIC
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_post_args = '--ignore=E101,E501,W191'
+let g:syntastic_python_flake8_post_args = '--ignore=E501'
 
 " COLORS
 if has('gui_running')

@@ -2,6 +2,6 @@
 	name = Daniel Stockton
 	email = me@danielstockton.com
 [color]
-  ui = true
+    ui = true
 [web]
 	browser = google-chrome
