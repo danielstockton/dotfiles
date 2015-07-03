@@ -96,6 +96,7 @@ let g:paredit_electric_return = 0
 " SYNTASTIC
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_post_args = '--ignore=E501'
+let g:syntastic_javascript_checkers = ['jshint']
 
 " COLORS
 if has('gui_running')
