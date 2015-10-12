@@ -30,6 +30,7 @@ fi
 export PATH=${PATH}:$HOME/bin/:$HOME/.lein:/usr/local/heroku/bin:$HOME/.rbenv/bin
 export EDITOR=vim
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/jre
+export ANDROID_HOME=/opt/android-sdk
 
 eval `dircolors ~/.dir_colors`
 
