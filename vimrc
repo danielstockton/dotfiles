@@ -11,7 +11,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'groenewege/vim-less'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'majutsushi/tagbar'
@@ -21,7 +20,6 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
 
@@ -87,17 +85,6 @@ nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 autocmd BufWritePre * :%s/\s\+$//e
 
-" TAGS
-nmap <leader>a :TagbarToggle<CR>
-
-" PAREDIT
-let g:paredit_electric_return = 0
-
-" SYNTASTIC
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_post_args = '--ignore=E501'
-let g:syntastic_javascript_checkers = ['eslint']
-
 " COLORS
 if has('gui_running')
     set background=light
@@ -113,3 +100,22 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
+" TAGS
+nmap <leader>a :TagbarToggle<CR>
+
+" PAREDIT
+let g:paredit_electric_return = 0
+
+" SYNTASTIC
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_post_args = '--ignore=E501'
+let g:syntastic_javascript_checkers = ['eslint']
+
+" CLOJURE
+let g:clojure_fuzzy_indent = 1
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^div', '^ul', '^li', '^form',
+      \'^input', '^button', '^transact']
+let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
+let g:clojure_special_indent_words =
+      \'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,defui'
+let g:clojure_align_multiline_strings = 0
