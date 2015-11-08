@@ -9,8 +9,7 @@
                       clojure-mode
                       cider
                       paredit
-                      rainbow-delimiters
-                      evil))
+                      rainbow-delimiters))
 
 (dolist (p my-packages) (when (not (package-installed-p p)) (package-install p)))
 
@@ -22,9 +21,6 @@
 
 (require 'linum)
 (global-linum-mode)
-
-(require 'evil)
-(evil-mode 1)
 
 (menu-bar-mode 0)
 
