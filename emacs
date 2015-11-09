@@ -1,7 +1,7 @@
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 (require 'package)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
 (package-initialize)
 
 (defvar my-packages '(color-theme-solarized
@@ -9,7 +9,8 @@
                       clojure-mode
                       cider
                       paredit
-                      rainbow-delimiters))
+                      rainbow-delimiters
+                      flycheck))
 
 (dolist (p my-packages) (when (not (package-installed-p p)) (package-install p)))
 
@@ -29,6 +30,9 @@
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
+
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Org mode
 (require 'org-install)
