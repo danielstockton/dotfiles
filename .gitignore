@@ -10,7 +10,4 @@ vim/bundle/*
 
 #*
 
-emacs.d/elpa
-emacs.d/tramp
-emacs.d/swank
-emacs.d/auto-save-list
+emacs.d/

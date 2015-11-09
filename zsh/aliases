@@ -22,10 +22,3 @@ alias gba='git branch -a'
 alias gd='git diff'
 alias gm='git merge'
 alias gg='git log --graph --oneline --color'
-
-# Rails
-alias migrate='rake db:migrate db:test:clone'
-
-# Emacs
-alias emacs='emacs -nw'
-
