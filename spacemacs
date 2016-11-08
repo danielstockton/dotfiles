@@ -201,6 +201,8 @@ user code."
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (require 'golden-ratio)
+  (golden-ratio-mode 1)
   (put-clojure-indent 'defui '(1 nil nil (1)))
   (setq clojure-indent-style :always-indent)
   (setq clojure-align-forms-automatically t)
