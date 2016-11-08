@@ -5,3 +5,5 @@
     ui = true
 [web]
 	browser = google-chrome
+[core]
+	excludesfile = /home/daniel/.gitignore_global
