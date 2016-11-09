@@ -203,7 +203,8 @@ user code."
 layers configuration. You are free to put any user code."
   (require 'golden-ratio)
   (golden-ratio-mode 1)
-  (put-clojure-indent 'defui '(1 nil nil (1)))
+  (with-eval-after-load 'clojure-mode
+    (put-clojure-indent 'defui '(1 nil nil (1))))
   (setq clojure-indent-style :always-indent)
   (setq clojure-align-forms-automatically t)
 )
