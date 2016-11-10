@@ -18,6 +18,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     python
      html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -207,6 +208,7 @@ layers configuration. You are free to put any user code."
     (put-clojure-indent 'defui '(1 nil nil (1))))
   (setq clojure-indent-style :always-indent)
   (setq clojure-align-forms-automatically t)
+  (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
