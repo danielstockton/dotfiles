@@ -18,6 +18,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     javascript
      python
      html
      ;; ----------------------------------------------------------------
@@ -204,8 +205,10 @@ user code."
 layers configuration. You are free to put any user code."
   (require 'golden-ratio)
   (golden-ratio-mode 1)
-  (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
-  (setq clojure-indent-style :always-indent)
+  (global-column-enforce-mode 1)
+  (setq cider-cljs-lein-repl
+        "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
+  (setq clojure-indent-style :always-align)
   (setq clojure-align-forms-automatically t)
   (defun indent-cond (indent-point state)
     (goto-char (elt state 1))
@@ -225,8 +228,29 @@ layers configuration. You are free to put any user code."
         ;; indentation as if there were an extra sexp at point.
         (scan-error (cl-incf pos)))
       (+ base-col (if (evenp pos) 4 2))))
+  (defun indent-cond-> (indent-point state)
+    (goto-char (elt state 1))
+    (let ((pos -1)
+          (base-col (current-column)))
+      (forward-char 1)
+      ;; `forward-sexp' will error if indent-point is after
+      ;; the last sexp in the current sexp.
+      (condition-case nil
+          (while (and (<= (point) indent-point)
+                      (not (eobp)))
+            (clojure-forward-logical-sexp 1)
+            (cl-incf pos))
+        ;; If indent-point is _after_ the last sexp in the
+        ;; current sexp, we detect that by catching the
+        ;; `scan-error'. In that case, we should return the
+        ;; indentation as if there were an extra sexp at point.
+        (scan-error (cl-incf pos)))
+      (+ base-col (if (oddp pos) 4 2))))
   (with-eval-after-load 'clojure-mode
     (put-clojure-indent 'cond #'indent-cond)
+    (put-clojure-indent 'condp #'indent-cond)
+    (put-clojure-indent 'cond-> #'indent-cond->)
+    (put-clojure-indent 'cond->> #'indent-cond->)
     (put-clojure-indent 'defui '(1 nil nil (1))))
 )
 
