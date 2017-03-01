@@ -256,6 +256,9 @@ layers configuration. You are free to put any user code."
     (put-clojure-indent 'dom/h1 1)
     (put-clojure-indent 'dom/h2 1)
     (put-clojure-indent 'dom/h3 1)
+    (put-clojure-indent 'dom/p 1)
+    (put-clojure-indent 'dom/bold 1)
+    (put-clojure-indent 'dom/strong 1)
     (put-clojure-indent 'dom/form 1)
     (put-clojure-indent 'dom/label 1)
     (put-clojure-indent 'dom/input 1)
@@ -265,6 +268,9 @@ layers configuration. You are free to put any user code."
     (put-clojure-indent 'dom/ul 1)
     (put-clojure-indent 'dom/li 1)
     (put-clojure-indent 'dom/a 1)
+    (put-clojure-indent 'dom/img 1)
+    (put-clojure-indent 'dom/picture 1)
+    (put-clojure-indent 'dom/figure 1)
     (put-clojure-indent 'dom/span 1)
     (put-clojure-indent 'dom/table 1)
     (put-clojure-indent 'dom/thead 1)
@@ -276,8 +282,7 @@ layers configuration. You are free to put any user code."
     (put-clojure-indent 'dom/header 1)
     (put-clojure-indent 'dom/footer 1)
     (put-clojure-indent 'dom/nav 1)
-    (put-clojure-indent 'dom/svg 1))
-)
+    (put-clojure-indent 'dom/svg 1)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
