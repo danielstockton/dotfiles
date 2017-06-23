@@ -253,6 +253,7 @@ layers configuration. You are free to put any user code."
     (put-clojure-indent 'dom/h3 1)
     (put-clojure-indent 'dom/p 1)
     (put-clojure-indent 'dom/bold 1)
+    (put-clojure-indent 'dom/small 1)
     (put-clojure-indent 'dom/strong 1)
     (put-clojure-indent 'dom/form 1)
     (put-clojure-indent 'dom/label 1)
