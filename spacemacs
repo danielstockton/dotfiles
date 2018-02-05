@@ -19,6 +19,8 @@ values."
    dotspacemacs-configuration-layers
    '(
      sql
+     yaml
+     rust
      javascript
      python
      html
