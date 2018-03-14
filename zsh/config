@@ -27,19 +27,16 @@ else
   export PS1='%3~${vcs_info_msg_0_}%# '
 fi
 
-export PYENV_ROOT=$HOME/.pyenv
 export EDITOR=vim
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export ANDROID_HOME=/opt/android-sdk
-export PATH=$PATH:$HOME/bin/:$HOME/.lein:$HOME/.rbenv/bin:$PYENV_ROOT/bin:$HOME/code/flutter/bin
+export PATH=$PATH:$HOME/bin/:$HOME/.lein:$HOME/.rbenv/bin:$HOME/code/flutter/bin
 
 eval `dircolors ~/.dir_colors`
 
 export TERM=xterm-16color
 
 eval "$(rbenv init -)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator && source $HOME/.tmuxinator/scripts/tmuxinator_completion
 
