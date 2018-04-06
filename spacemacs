@@ -209,6 +209,8 @@ layers configuration. You are free to put any user code."
   (require 'golden-ratio)
   (golden-ratio-mode 1)
   (global-column-enforce-mode 1)
+  (require 'editorconfig)
+  (editorconfig-mode 1)
   (setq cider-cljs-lein-repl
         "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
   (setq clojure-indent-style :always-align)
