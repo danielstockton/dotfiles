@@ -288,7 +288,9 @@ layers configuration. You are free to put any user code."
     (put-clojure-indent 'dom/nav 1)
     (put-clojure-indent 'dom/svg 1))
   (eval-after-load 'js2-mode
-    '(add-hook 'js2-mode-hook #'add-node-modules-path)))
+    '(add-hook 'js2-mode-hook #'add-node-modules-path))
+  (setq js2-mode-show-parse-errors nil)
+  (setq js2-mode-show-strict-warnings nil))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
