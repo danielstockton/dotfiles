@@ -38,8 +38,6 @@ export TERM=xterm-16color
 
 eval "$(rbenv init -)"
 
-source /usr/share/nvm/init-nvm.sh
-
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator && source $HOME/.tmuxinator/scripts/tmuxinator_completion
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
