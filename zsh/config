@@ -29,7 +29,7 @@ fi
 
 eval `dircolors ~/.dir_colors`
 
-export TERM=xterm-16color
+export TERM=xterm-256color
 
 eval "$(rbenv init -)"
 
