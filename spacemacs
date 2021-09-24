@@ -18,6 +18,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     react
      typescript
      asciidoc
      nginx
@@ -217,47 +218,7 @@ layers configuration. You are free to put any user code."
         "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
   (setq clojure-indent-style :always-align)
   (setq clojure-align-forms-automatically t)
-  (defun indent-cond (indent-point state)
-    (goto-char (elt state 1))
-    (let ((pos -1)
-          (base-col (current-column)))
-      (forward-char 1)
-      ;; `forward-sexp' will error if indent-point is after
-      ;; the last sexp in the current sexp.
-      (condition-case nil
-          (while (and (<= (point) indent-point)
-                      (not (eobp)))
-            (clojure-forward-logical-sexp 1)
-            (cl-incf pos))
-        ;; If indent-point is _after_ the last sexp in the
-        ;; current sexp, we detect that by catching the
-        ;; `scan-error'. In that case, we should return the
-        ;; indentation as if there were an extra sexp at point.
-        (scan-error (cl-incf pos)))
-      (+ base-col (if (evenp pos) 4 2))))
-  (defun indent-cond-> (indent-point state)
-    (goto-char (elt state 1))
-    (let ((pos -1)
-          (base-col (current-column)))
-      (forward-char 1)
-      ;; `forward-sexp' will error if indent-point is after
-      ;; the last sexp in the current sexp.
-      (condition-case nil
-          (while (and (<= (point) indent-point)
-                      (not (eobp)))
-            (clojure-forward-logical-sexp 1)
-            (cl-incf pos))
-        ;; If indent-point is _after_ the last sexp in the
-        ;; current sexp, we detect that by catching the
-        ;; `scan-error'. In that case, we should return the
-        ;; indentation as if there were an extra sexp at point.
-        (scan-error (cl-incf pos)))
-      (+ base-col (if (oddp pos) 4 2))))
   (with-eval-after-load 'clojure-mode
-    (put-clojure-indent 'cond #'indent-cond)
-    (put-clojure-indent 'condp #'indent-cond)
-    (put-clojure-indent 'cond-> #'indent-cond->)
-    (put-clojure-indent 'cond->> #'indent-cond->)
     (put-clojure-indent 'defui '(1 nil nil (1)))
     (put-clojure-indent 'dom/div 1)
     (put-clojure-indent 'dom/h1 1)
@@ -294,7 +255,14 @@ layers configuration. You are free to put any user code."
   (eval-after-load 'js2-mode
     '(add-hook 'js2-mode-hook #'add-node-modules-path))
   (setq js2-mode-show-parse-errors nil)
-  (setq js2-mode-show-strict-warnings nil))
+  (setq js2-mode-show-strict-warnings nil)
+  (setq-default
+   js2-basic-offset 2
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -303,6 +271,7 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol t)
  '(ledger-reports
    (quote
     (("checking" "ledger -f accounts.ledger balance Checking")
@@ -315,7 +284,7 @@ layers configuration. You are free to put any user code."
      ("account" "ledger -f %(ledger-file) reg %(account)"))))
  '(package-selected-packages
    (quote
-    (tide typescript-mode adoc-mode markup-faces transient spinner json-snatcher json-reformat parent-mode fringe-helper git-gutter+ pos-tip flx treepy graphql web-completion-data peg eval-sexp-fu sesman bind-map popup add-node-modules-path solidity-mode nginx-mode org-mime epl ghub let-alist pythonic yaml-mode toml-mode racer flycheck-rust cargo rust-mode dash-functional org-category-capture tern sql-indent winum unfill fuzzy seq f s xterm-color ws-butler which-key web-mode use-package toc-org spaceline shell-pop restart-emacs pyvenv pug-mode persp-mode orgit org org-plus-contrib org-download neotree move-text mmm-mode markdown-toc live-py-mode ledger-mode info+ indent-guide hide-comnt help-fns+ helm-projectile helm-make helm-gitignore request helm-flx helm-c-yasnippet helm-ag gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe expand-region exec-path-from-shell evil-surround evil-nerd-commenter evil-mc evil-matchit evil-escape evil-ediff evil-anzu eshell-z editorconfig company-statistics column-enforce-mode clj-refactor cider clojure-mode auto-compile packed aggressive-indent ace-window auto-complete anaconda-mode iedit smartparens highlight evil flycheck flyspell-correct company helm helm-core yasnippet multiple-cursors avy skewer-mode js2-mode simple-httpd magit magit-popup git-commit with-editor async alert projectile hydra haml-mode dash spacemacs-theme yapfify window-numbering web-beautify volatile-highlights vi-tilde-fringe uuidgen undo-tree tagedit smeargle slim-mode scss-mode sass-mode rainbow-delimiters queue quelpa pytest pyenv-mode py-isort powerline popwin pkg-info pip-requirements pcre2el paredit paradox org-projectile org-present org-pomodoro org-bullets open-junk-file mwim multi-term markdown-mode magit-gitflow macrostep lorem-ipsum log4e livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc inflections ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-mode-manager helm-descbinds helm-css-scss helm-company goto-chg google-translate golden-ratio gnuplot gntp gitignore-mode gitconfig-mode git-gutter-fringe+ git-gutter gh-md flyspell-correct-helm flycheck-pos-tip flycheck-ledger flx-ido fill-column-indicator fancy-battery eyebrowse evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-search-highlight-persist evil-numbers evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-args eshell-prompt-extras esh-help emmet-mode elisp-slime-nav edn dumb-jump diminish diff-hl define-word cython-mode company-web company-tern company-anaconda coffee-mode clojure-snippets clean-aindent-mode cider-eval-sexp-fu bind-key auto-yasnippet auto-highlight-symbol auto-dictionary anzu adaptive-wrap ace-link ace-jump-helm-line ac-ispell))))
+    (lv parseedn parseclj a tide typescript-mode adoc-mode markup-faces transient spinner json-snatcher json-reformat parent-mode fringe-helper git-gutter+ pos-tip flx treepy graphql web-completion-data peg eval-sexp-fu sesman bind-map popup add-node-modules-path solidity-mode nginx-mode org-mime epl ghub let-alist pythonic yaml-mode toml-mode racer flycheck-rust cargo rust-mode dash-functional org-category-capture tern sql-indent winum unfill fuzzy seq f s xterm-color ws-butler which-key web-mode use-package toc-org spaceline shell-pop restart-emacs pyvenv pug-mode persp-mode orgit org org-plus-contrib org-download neotree move-text mmm-mode markdown-toc live-py-mode ledger-mode info+ indent-guide hide-comnt help-fns+ helm-projectile helm-make helm-gitignore request helm-flx helm-c-yasnippet helm-ag gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe expand-region exec-path-from-shell evil-surround evil-nerd-commenter evil-mc evil-matchit evil-escape evil-ediff evil-anzu eshell-z editorconfig company-statistics column-enforce-mode clj-refactor cider clojure-mode auto-compile packed aggressive-indent ace-window auto-complete anaconda-mode iedit smartparens highlight evil flycheck flyspell-correct company helm helm-core yasnippet multiple-cursors avy skewer-mode js2-mode simple-httpd magit magit-popup git-commit with-editor async alert projectile hydra haml-mode dash spacemacs-theme yapfify window-numbering web-beautify volatile-highlights vi-tilde-fringe uuidgen undo-tree tagedit smeargle slim-mode scss-mode sass-mode rainbow-delimiters queue quelpa pytest pyenv-mode py-isort powerline popwin pkg-info pip-requirements pcre2el paredit paradox org-projectile org-present org-pomodoro org-bullets open-junk-file mwim multi-term markdown-mode magit-gitflow macrostep lorem-ipsum log4e livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc inflections ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-mode-manager helm-descbinds helm-css-scss helm-company goto-chg google-translate golden-ratio gnuplot gntp gitignore-mode gitconfig-mode git-gutter-fringe+ git-gutter gh-md flyspell-correct-helm flycheck-pos-tip flycheck-ledger flx-ido fill-column-indicator fancy-battery eyebrowse evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-search-highlight-persist evil-numbers evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-args eshell-prompt-extras esh-help emmet-mode elisp-slime-nav edn dumb-jump diminish diff-hl define-word cython-mode company-web company-tern company-anaconda coffee-mode clojure-snippets clean-aindent-mode cider-eval-sexp-fu bind-key auto-yasnippet auto-highlight-symbol auto-dictionary anzu adaptive-wrap ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
