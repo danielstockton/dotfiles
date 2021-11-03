@@ -26,7 +26,16 @@ values."
      yaml
      rust
      javascript
-     python
+     lsp
+     dap
+     (python :variables
+             python-backend 'lsp
+             python-lsp-server 'pylsp
+             python-formatter 'black
+             python-format-on-save t
+             python-pipenv-activate t
+             flycheck-flake8rc ".flake8"
+             flycheck-checker-error-threshold 2000)
      html
      auto-completion
      better-defaults
@@ -42,6 +51,7 @@ values."
      syntax-checking
      version-control
      finance
+     graphviz
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -54,6 +64,7 @@ values."
                                       )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
+   dotspacemacs-install-packages 'used-only
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -207,55 +218,22 @@ user code."
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
- This function is called at the very end of Spacemacs initialization after
+This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (require 'golden-ratio)
   (golden-ratio-mode 1)
-  (global-column-enforce-mode 1)
+
   (require 'editorconfig)
   (editorconfig-mode 1)
-  (setq cider-cljs-lein-repl
-        "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
+
   (setq clojure-indent-style :always-align)
   (setq clojure-align-forms-automatically t)
-  (with-eval-after-load 'clojure-mode
-    (put-clojure-indent 'defui '(1 nil nil (1)))
-    (put-clojure-indent 'dom/div 1)
-    (put-clojure-indent 'dom/h1 1)
-    (put-clojure-indent 'dom/h2 1)
-    (put-clojure-indent 'dom/h3 1)
-    (put-clojure-indent 'dom/p 1)
-    (put-clojure-indent 'dom/bold 1)
-    (put-clojure-indent 'dom/small 1)
-    (put-clojure-indent 'dom/strong 1)
-    (put-clojure-indent 'dom/form 1)
-    (put-clojure-indent 'dom/label 1)
-    (put-clojure-indent 'dom/input 1)
-    (put-clojure-indent 'dom/select 1)
-    (put-clojure-indent 'dom/option 1)
-    (put-clojure-indent 'dom/button 1)
-    (put-clojure-indent 'dom/ul 1)
-    (put-clojure-indent 'dom/li 1)
-    (put-clojure-indent 'dom/a 1)
-    (put-clojure-indent 'dom/img 1)
-    (put-clojure-indent 'dom/picture 1)
-    (put-clojure-indent 'dom/figure 1)
-    (put-clojure-indent 'dom/span 1)
-    (put-clojure-indent 'dom/table 1)
-    (put-clojure-indent 'dom/thead 1)
-    (put-clojure-indent 'dom/th 1)
-    (put-clojure-indent 'dom/tbody 1)
-    (put-clojure-indent 'dom/tr 1)
-    (put-clojure-indent 'dom/td 1)
-    (put-clojure-indent 'dom/section 1)
-    (put-clojure-indent 'dom/header 1)
-    (put-clojure-indent 'dom/footer 1)
-    (put-clojure-indent 'dom/nav 1)
-    (put-clojure-indent 'dom/svg 1))
+
   (eval-after-load 'js2-mode
     '(add-hook 'js2-mode-hook #'add-node-modules-path))
   (setq js2-mode-show-parse-errors nil)
   (setq js2-mode-show-strict-warnings nil)
+
   (setq-default
    js2-basic-offset 2
    css-indent-offset 2
@@ -292,3 +270,35 @@ layers configuration. You are free to put any user code."
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol t)
+ '(ledger-reports
+   (quote
+    (("checking" "ledger -f accounts.ledger balance Checking")
+     ("net worth" "ledger -f accounts.ledger balance ^assets ^liabilities")
+     ("bal ^assets ^liabilities" "ledger -f accounts.ledger balance ^assets ^liabilities")
+     ("balance ^assets ^liabilities" "ledger balance ^assets ^liabilities")
+     ("bal" "ledger -f %(ledger-file) bal")
+     ("reg" "ledger -f %(ledger-file) reg")
+     ("payee" "ledger -f %(ledger-file) reg @%(payee)")
+     ("account" "ledger -f %(ledger-file) reg %(account)"))))
+ '(package-selected-packages
+   (quote
+    (lsp-ui lsp-python-ms lsp-pyright lsp-origami origami helm-lsp dap-mode lsp-treemacs bui lsp-mode lv parseedn parseclj a tide typescript-mode adoc-mode markup-faces transient spinner json-snatcher json-reformat parent-mode fringe-helper git-gutter+ pos-tip flx treepy graphql web-completion-data peg eval-sexp-fu sesman bind-map popup add-node-modules-path solidity-mode nginx-mode org-mime epl ghub let-alist pythonic yaml-mode toml-mode racer flycheck-rust cargo rust-mode dash-functional org-category-capture tern sql-indent winum unfill fuzzy seq f s xterm-color ws-butler which-key web-mode use-package toc-org spaceline shell-pop restart-emacs pyvenv pug-mode persp-mode orgit org org-plus-contrib org-download neotree move-text mmm-mode markdown-toc live-py-mode ledger-mode info+ indent-guide hide-comnt help-fns+ helm-projectile helm-make helm-gitignore request helm-flx helm-c-yasnippet helm-ag gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe expand-region exec-path-from-shell evil-surround evil-nerd-commenter evil-mc evil-matchit evil-escape evil-ediff evil-anzu eshell-z editorconfig company-statistics column-enforce-mode clj-refactor cider clojure-mode auto-compile packed aggressive-indent ace-window auto-complete anaconda-mode iedit smartparens highlight evil flycheck flyspell-correct company helm helm-core yasnippet multiple-cursors avy skewer-mode js2-mode simple-httpd magit magit-popup git-commit with-editor async alert projectile hydra haml-mode dash spacemacs-theme yapfify window-numbering web-beautify volatile-highlights vi-tilde-fringe uuidgen undo-tree tagedit smeargle slim-mode scss-mode sass-mode rainbow-delimiters queue quelpa pytest pyenv-mode py-isort powerline popwin pkg-info pip-requirements pcre2el paredit paradox org-projectile org-present org-pomodoro org-bullets open-junk-file mwim multi-term markdown-mode magit-gitflow macrostep lorem-ipsum log4e livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc inflections ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-mode-manager helm-descbinds helm-css-scss helm-company goto-chg google-translate golden-ratio gnuplot gntp gitignore-mode gitconfig-mode git-gutter-fringe+ git-gutter gh-md flyspell-correct-helm flycheck-pos-tip flycheck-ledger flx-ido fill-column-indicator fancy-battery eyebrowse evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-search-highlight-persist evil-numbers evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-args eshell-prompt-extras esh-help emmet-mode elisp-slime-nav edn dumb-jump diminish diff-hl define-word cython-mode company-web company-tern company-anaconda coffee-mode clojure-snippets clean-aindent-mode cider-eval-sexp-fu bind-key auto-yasnippet auto-highlight-symbol auto-dictionary anzu adaptive-wrap ace-link ace-jump-helm-line ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+)
