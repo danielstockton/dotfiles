@@ -17,6 +17,7 @@ bindsym $mod+d exec dmenu_run
 bindsym $mod+t exec gnome-terminal
 bindsym $mod+b exec google-chrome
 bindsym $mod+e exec nautilus
+bindsym $mod+x exec i3lock -c 000000
 
 # Kill
 bindsym $mod+Shift+q kill
