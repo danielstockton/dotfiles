@@ -1,0 +1,27 @@
+[
+    {
+        "key": "space w",
+        "command": "-workbench.action.focusNextGroup",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "l",
+        "command": "workbench.action.focusNextGroup",
+        "when": "editorTextFocus && inKeybindingSequence && keybindingSequence['space w']"
+    },
+    {
+        "key": "space w",
+        "command": "-workbench.action.focusPreviousGroup",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "h",
+        "command": "workbench.action.focusPreviousGroup",
+        "when": "editorTextFocus && inKeybindingSequence && keybindingSequence['space w']"
+    },
+    {
+        "key": "space tab",
+        "command": "workbench.action.nextEditor",
+        "when": "editorTextFocus"
+    }
+]
