@@ -1,9 +1,14 @@
 [user]
 	name = Daniel Stockton
 	email = me@danielstockton.com
+	signingkey = /Users/dan/.ssh/id_ed25519.pub
 [color]
     ui = true
 [web]
 	browser = google-chrome
 [core]
 	excludesfile = /home/daniel/.gitignore_global
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true

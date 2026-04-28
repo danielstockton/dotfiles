@@ -21,7 +21,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
-Plugin 'Valloric/YouCompleteMe'
 
 " CLOJURE
 Plugin 'venantius/vim-eastwood'

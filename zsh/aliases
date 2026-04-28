@@ -13,6 +13,8 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias pd='gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"'
 alias pl='gsettings set org.gnome.desktop.interface color-scheme "prefer-light"'
+alias vim=nvim
+alias vi=nvim
 
 # Git
 alias gl='git pull'
