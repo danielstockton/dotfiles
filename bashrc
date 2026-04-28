@@ -8,5 +8,3 @@ export NVM_DIR="$HOME/.nvm"
 . "$HOME/.cargo/env"
 
 . "$HOME/.local/bin/env"
-
-alias claude-mem='/Users/dan/.bun/bin/bun "/Users/dan/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
