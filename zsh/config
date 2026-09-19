@@ -28,9 +28,12 @@ fi
 
 # ─── Languages & toolchains ───────────────────────────────────
 
-# CUDA
-export PATH=/usr/local/cuda-10.1/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+# CUDA (only if actually installed - a stale LD_LIBRARY_PATH causes
+# genuinely confusing library-resolution failures)
+if [ -d /usr/local/cuda-10.1 ]; then
+  export PATH=/usr/local/cuda-10.1/bin${PATH:+:${PATH}}
+  export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+fi
 
 # Python / pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -41,20 +44,24 @@ fi
 
 # Rust / Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.cargo/env:$PATH"
 
-# Java (Homebrew OpenJDK)
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+# Java (Homebrew OpenJDK - macOS only)
+[ -d /opt/homebrew/opt/openjdk/bin ] && export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # Ruby / rbenv
 if command -v rbenv 1>/dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
 
-# Node / nvm (Homebrew-installed)
+# Node / nvm - Homebrew on macOS, ~/.nvm on Linux
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+if [ -s "/opt/homebrew/opt/nvm/nvm.sh" ]; then
+  \. "/opt/homebrew/opt/nvm/nvm.sh"
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+elif [ -s "$NVM_DIR/nvm.sh" ]; then
+  \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+fi
 
 # Auto-switch node version based on .nvmrc
 autoload -U add-zsh-hook
@@ -87,7 +94,7 @@ export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 # ─── Tool integrations ────────────────────────────────────────
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator && source $HOME/.tmuxinator/scripts/tmuxinator_completion
 
-eval "$(direnv hook zsh)"
+command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 
 # ─── Prompt ───────────────────────────────────────────────────
 autoload -Uz vcs_info
@@ -119,4 +126,12 @@ fi
 # if the key isn't there or already loaded.
 if [[ "$OSTYPE" == darwin* ]] && [[ -f "$HOME/.ssh/id_ed25519" ]]; then
   ssh-add --apple-use-keychain -q "$HOME/.ssh/id_ed25519" 2>/dev/null
+fi
+
+# ─── Linux ────────────────────────────────────────────────────
+# Counterpart to the macOS Keychain block above: keychain starts (or reuses)
+# an ssh-agent and loads id_rsa, so git signing and pushes work without a
+# passphrase prompt in every new shell.
+if [[ "$OSTYPE" == linux* ]] && command -v keychain >/dev/null 2>&1; then
+  eval "$(keychain --eval --quiet id_rsa)"
 fi

@@ -7,4 +7,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 . "$HOME/.cargo/env"
 
-. "$HOME/.local/bin/env"
+# Written by the uv/astral installer; present on the MacBook, not on Ubuntu.
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
+
+# Added by LM Studio CLI (lms)
+[ -d "$HOME/.lmstudio/bin" ] && export PATH="$PATH:$HOME/.lmstudio/bin"

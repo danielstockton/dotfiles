@@ -1,8 +1,7 @@
 set $mod Mod4
 
 # Font
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# font xft:DejaVu Sans Mono 10
+font xft:DejaVu Sans Mono 10
 
 # Volume controls
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
@@ -18,6 +17,7 @@ bindsym $mod+t exec gnome-terminal
 bindsym $mod+b exec google-chrome
 bindsym $mod+e exec nautilus
 bindsym $mod+x exec i3lock -c 000000
+bindsym $mod+c exec cursor --no-sandbox
 
 # Kill
 bindsym $mod+Shift+q kill
@@ -110,6 +110,8 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+bindsym Print exec maim -s -u | xclip -selection clipboard -t image/png -i
 
 # No titles or borders
 new_window none
