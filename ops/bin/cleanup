@@ -1,0 +1,48 @@
+#!/bin/bash
+# Reclaims ~8GB. Conservative and targeted.
+# Does NOT touch: docker (3.6G of real data), postgres, postfix, nvme0n1p1,
+# or the 32-bit graphics stack that Steam needs.
+set -euo pipefail
+
+echo "==> Before:"; df -h / | tail -1
+
+echo
+echo "==> [1/5] Trimming journal to 200M (currently ~1.3G)"
+journalctl --vacuum-size=200M
+
+echo
+echo "==> [2/5] Removing disabled snap revisions"
+snap list --all | awk '/disabled/{print $1, $3}' | while read -r name rev; do
+  echo "   removing $name rev $rev"
+  snap remove "$name" --revision="$rev" || true
+done
+snap set system refresh.retain=2
+
+echo
+echo "==> [3/5] Protecting the 32-bit graphics stack (Steam needs it)"
+# Mark as manually installed so autoremove stops proposing them.
+apt-mark manual libgl1:i386 libgl1-mesa-dri:i386 libglvnd0:i386 libglx0:i386 \
+  libglx-mesa0:i386 libvulkan1:i386 libxcb-glx0:i386 libxcb-shm0:i386 \
+  libxxf86vm1:i386 mesa-vulkan-drivers:i386 2>/dev/null || true
+
+echo
+echo "==> [4/5] Purging the superseded nvidia-535 driver and old -107 kernel bits"
+echo "    (you run 580 on kernel 6.8.0-139; both are untouched)"
+apt-get -y purge \
+  'libnvidia-*-535' 'libnvidia-*-535:i386' 'nvidia-*-535' \
+  'nvidia-firmware-535-*' xserver-xorg-video-nvidia-535 \
+  linux-headers-6.8.0-107 linux-tools-6.8.0-107 \
+  google-cloud-cli-anthoscli 2>/dev/null || true
+
+echo
+echo "==> [5/5] Purging leftover config of removed packages, then apt cache"
+dpkg -l | awk '/^rc/{print $2}' | xargs -r dpkg --purge 2>/dev/null || true
+apt-get clean
+
+echo
+echo "==> After:"; df -h / | tail -1
+echo
+echo "Sanity check - these must still be installed:"
+dpkg -l | grep -cE "^ii.*nvidia.*580" | xargs echo "  nvidia-580 packages:"
+dpkg -l | grep -cE "^ii.*:i386" | xargs echo "  i386 packages remaining:"
+echo "Done."

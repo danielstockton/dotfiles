@@ -11,6 +11,9 @@ typeset -U path PATH
 # User-local binaries: claude, uv, ruff, aider, cursor-agent, mscore4.
 path=("$HOME/.local/bin" $path)
 
+# Machine-admin tools (Linux only - the Mac is not administered this way).
+[[ "$OSTYPE" == linux* ]] && [ -d "$HOME/ops/bin" ] && path=("$HOME/ops/bin" $path)
+
 export PATH=$PATH:$HOME/bin/:$HOME/.lein:$HOME/.rbenv/bin:$HOME/code/flutter/bin
 export PATH=$PATH:${ANDROID_HOME}/emulator
 export PATH=$PATH:${ANDROID_HOME}/tools

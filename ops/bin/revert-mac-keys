@@ -1,0 +1,5 @@
+#!/bin/bash
+# Reverts the Mac-style key changes. No root needed.
+gsettings set org.gnome.desktop.input-sources xkb-options "@as []"
+gsettings reset org.gnome.shell.keybindings toggle-overview
+echo "Reverted: Command is Super again, Overview back on its default."

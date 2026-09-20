@@ -11,3 +11,5 @@ vim/bundle/*
 #*
 
 emacs.d/
+
+ops/local/

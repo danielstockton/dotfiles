@@ -1,0 +1,42 @@
+#!/bin/bash
+# Transcode HEVC/10-bit video into H.264 + AAC that a Chromecast can decode,
+# using the RTX 2070 (NVDEC decode + NVENC encode).
+#
+#   cast-prep FILE...            convert each file alongside itself
+#   cast-prep --replace FILE...  convert, VERIFY, then delete the original
+#
+# --replace only removes a source after the output decodes cleanly AND its
+# duration matches the source to within 1 second.
+set -uo pipefail
+replace=0
+[ "${1:-}" = "--replace" ] && { replace=1; shift; }
+[ $# -eq 0 ] && { echo "usage: cast-prep [--replace] FILE..."; exit 1; }
+
+dur() { ffprobe -v error -show_entries format=duration -of csv=p=0 "$1" 2>/dev/null | cut -d. -f1; }
+
+for in in "$@"; do
+  [ -f "$in" ] || { echo "SKIP (not a file): $in"; continue; }
+  out="${in%.*}.mp4"
+  [ "$in" = "$out" ] && { echo "SKIP (already .mp4): $in"; continue; }
+  echo "=============================================================="
+  echo "IN : $(basename "$in")"
+  ffmpeg -hide_banner -loglevel error -stats -y -nostdin \
+    -hwaccel cuda -hwaccel_output_format cuda -i "$in" \
+    -map 0:v:0 -map 0:a:0 -sn \
+    -vf "scale_cuda=format=yuv420p" \
+    -c:v h264_nvenc -preset p4 -profile:v high -cq 23 -b:v 0 -maxrate 12M -bufsize 24M \
+    -c:a aac -ac 2 -b:a 192k -movflags +faststart "$out"
+  rc=$?
+  if [ $rc -ne 0 ] || [ ! -s "$out" ]; then
+    echo "FAILED (ffmpeg rc=$rc) - original kept"; rm -f "$out"; continue
+  fi
+  di=$(dur "$in"); do_=$(dur "$out")
+  if ! ffmpeg -v error -i "$out" -f null - 2>/dev/null; then
+    echo "FAILED decode check - original kept"; continue
+  fi
+  if [ -z "$di" ] || [ -z "$do_" ] || [ $((di>do_ ? di-do_ : do_-di)) -gt 1 ]; then
+    echo "FAILED duration check (src ${di}s vs out ${do_}s) - original kept"; continue
+  fi
+  echo "OK : $(basename "$out")  (${do_}s, $(du -h "$out" | cut -f1))"
+  if [ $replace -eq 1 ]; then rm -f "$in" && echo "     original deleted"; fi
+done

@@ -1,0 +1,39 @@
+#!/bin/bash
+# READ-ONLY health check. Changes nothing. Run with pkexec or sudo.
+echo "#################### SMART / NVMe ####################"
+for d in /dev/nvme0 /dev/nvme1; do
+  echo "--------- $d"
+  smartctl -H -A "$d" 2>/dev/null | grep -iE "overall-health|Percentage Used|Media and Data|Unsafe Shutdowns|Available Spare|Temperature:|Power On Hours|Error Information Log" \
+    || echo "  (no data)"
+done
+echo
+echo "#################### Unknown disk nvme0n1p1 ####################"
+blkid /dev/nvme0n1p1 2>&1
+echo "-- peek at contents (read-only mount):"
+mkdir -p /mnt/_probe 2>/dev/null
+if mount -o ro /dev/nvme0n1p1 /mnt/_probe 2>/dev/null; then
+  ls /mnt/_probe | head -15
+  df -h /mnt/_probe | tail -1
+  umount /mnt/_probe
+else
+  echo "  (could not mount read-only)"
+fi
+rmdir /mnt/_probe 2>/dev/null
+echo
+echo "#################### EFI partition integrity ####################"
+fsck.fat -n /dev/nvme1n1p1 2>&1 | tail -8
+echo
+echo "#################### Space hogs ####################"
+echo "-- journal:"; journalctl --disk-usage
+echo "-- top /var:"; du -sh /var/* 2>/dev/null | sort -rh | head -8
+echo "-- old snap revisions (disabled):"; snap list --all 2>/dev/null | awk '/disabled/{print $1, $3, $6}'
+echo
+echo "#################### Package cruft ####################"
+echo "-- autoremovable: $(apt-get --dry-run autoremove 2>/dev/null | grep -c '^Remv')"
+echo "-- rc (removed, config left): $(dpkg -l | grep -c '^rc')"
+echo
+echo "#################### Services worth questioning ####################"
+systemctl is-enabled postfix docker postgresql@14-main postgresql@16-main postgresql@17-main 2>&1 | paste -d' ' <(echo -e "postfix\ndocker\npg14\npg16\npg17") -
+echo "-- docker data size:"; du -sh /var/lib/docker 2>/dev/null
+echo
+echo "Done - nothing was modified."
