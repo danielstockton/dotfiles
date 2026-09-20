@@ -1,0 +1,19 @@
+#!/bin/bash
+# Enable ufw with a home-LAN posture:
+#   - deny everything inbound from outside the local network
+#   - allow the whole LAN, because several things need inbound connections:
+#       Jellyfin 8096 (TV/clients), Chromecast connecting BACK for VLC casting
+#       (random high port), Epson printer/scanner discovery, mDNS/avahi
+#   - allow all outbound
+# There is no SSH server running, so there is no lockout risk.
+# Undo with: sudo ufw disable
+set -euo pipefail
+LAN="${1:-192.168.1.0/24}"
+echo "==> LAN treated as: $LAN"
+ufw --force reset >/dev/null
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow from "$LAN" comment 'home LAN - jellyfin, casting, printer, mdns'
+ufw --force enable
+echo
+ufw status verbose
