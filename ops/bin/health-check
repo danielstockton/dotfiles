@@ -7,22 +7,29 @@ for d in /dev/nvme0 /dev/nvme1; do
     || echo "  (no data)"
 done
 echo
-echo "#################### Unknown disk nvme0n1p1 ####################"
-blkid /dev/nvme0n1p1 2>&1
-echo "-- peek at contents (read-only mount):"
-mkdir -p /mnt/_probe 2>/dev/null
-if mount -o ro /dev/nvme0n1p1 /mnt/_probe 2>/dev/null; then
-  ls /mnt/_probe | head -15
-  df -h /mnt/_probe | tail -1
-  umount /mnt/_probe
-else
-  echo "  (could not mount read-only)"
-fi
-rmdir /mnt/_probe 2>/dev/null
-echo
-echo "#################### EFI partition integrity ####################"
-fsck.fat -n /dev/nvme1n1p1 2>&1 | tail -8
-echo
+echo "#################### Unmounted data partitions ####################"
+# Identify by UUID, never by device name - NVMe enumeration is not stable here.
+lsblk -rno NAME,UUID,FSTYPE,SIZE,MOUNTPOINT | while read -r name uuid fstype size mnt; do
+  case "$name" in loop*|"") continue;; esac
+  [ -z "$uuid" ] && continue
+  [ -n "$mnt" ] && continue
+  case "$fstype" in swap|vfat|"") continue;; esac
+  echo "  /dev/$name  $fstype  $size  UUID=$uuid  (not mounted)"
+  mkdir -p /mnt/_probe 2>/dev/null
+  if mount -o ro "UUID=$uuid" /mnt/_probe 2>/dev/null; then
+    echo "    contents: $(ls /mnt/_probe | head -6 | tr '\\n' ' ')"
+    echo "    usage:    $(df -h /mnt/_probe | tail -1 | awk '{print $3" used of "$2}')"
+    umount /mnt/_probe
+  else
+    echo "    (could not mount read-only)"
+  fi
+  rmdir /mnt/_probe 2>/dev/null
+done
+
+echo "#################### EFI partition ####################"
+efi=$(findmnt -no SOURCE /boot/efi 2>/dev/null)
+if [ -n "$efi" ]; then fsck.fat -n "$efi" 2>&1 | tail -6; else echo "  /boot/efi not mounted"; fi
+
 echo "#################### Space hogs ####################"
 echo "-- journal:"; journalctl --disk-usage
 echo "-- top /var:"; du -sh /var/* 2>/dev/null | sort -rh | head -8
