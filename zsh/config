@@ -135,3 +135,6 @@ fi
 if [[ "$OSTYPE" == linux* ]] && command -v keychain >/dev/null 2>&1; then
   eval "$(keychain --eval --quiet id_rsa)"
 fi
+
+# ─── zoxide (smarter cd: `z partial-dir-name`) ────────────────
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"

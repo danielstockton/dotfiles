@@ -28,3 +28,16 @@ alias gm='git merge'
 alias gg='git log --graph --oneline --color'
 alias gaa='git add .; git commit --amend'
 alias gfr='git fetch --all && git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
+
+# ─── Modern CLI replacements ──────────────────────────────────
+# Ubuntu ships fd as fdfind and bat as batcat (binary name clashes).
+command -v fdfind  >/dev/null 2>&1 && alias fd='fdfind'
+command -v batcat  >/dev/null 2>&1 && alias bat='batcat'
+command -v eza     >/dev/null 2>&1 && {
+  alias ls='eza --group-directories-first'
+  alias ll='eza -l --group-directories-first --git'
+  alias la='eza -la --group-directories-first --git'
+  alias lt='eza --tree --level=2'
+}
+command -v ncdu    >/dev/null 2>&1 && alias du-i='ncdu'
+command -v btop    >/dev/null 2>&1 && alias top='btop'
